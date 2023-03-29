@@ -81,7 +81,6 @@ function NewRamenEvent(){
     })
 }
 
-//needs to click twice on delete to delete div of new ramen
 
 function removeRamen(id, ramen){
     fetch(`http://localhost:3000/ramens/${id}`, {
@@ -93,7 +92,6 @@ function removeRamen(id, ramen){
     .then(response => response.json())
     .then(() => {
         ramen.remove()
-        // location.reload()
     })
 }
 
