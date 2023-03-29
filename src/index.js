@@ -18,17 +18,18 @@ function renderRamen(ramen){
     const div = document.createElement("div")
 
     img.src = ramen.image
-    ramenMenu.append(img)
     ramenMenu.append(div)
+    div.append(img)
 
     img.addEventListener("click", ()=> displayDetails(ramen))
 
     const btn = document.createElement("button")
     btn.textContent = "Remove Ramen"
     btn.className = "delete-btn"
-    ramenMenu.append(btn)
+    div.append(btn)
 
-    btn.addEventListener("click", ()=> removeRamen(ramen.id, ramenMenu))
+    btn.addEventListener("click", ()=> {removeRamen(ramen.id, div)}
+    )
 }
 
 function displayDetails(ramen){
@@ -80,7 +81,7 @@ function NewRamenEvent(){
     })
 }
 
-//needs to click twice on delete to delete div
+//needs to click twice on delete to delete div of new ramen
 
 function removeRamen(id, ramen){
     fetch(`http://localhost:3000/ramens/${id}`, {
@@ -91,8 +92,8 @@ function removeRamen(id, ramen){
     })
     .then(response => response.json())
     .then(() => {
-        location.reload()
         ramen.remove()
+        // location.reload()
     })
 }
 
